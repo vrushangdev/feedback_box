@@ -9,6 +9,9 @@ verify_ssl = true
 pytest = "*"
 bcrypt = "*"
 mock = "*"
+flask = "*"
+flask-restful = "*"
+pytest-flask = "*"
 
 [requires]
 python_version = "3.7"

@@ -1,11 +1,13 @@
 import pytest
 from mock import Mock
+from typing import Tuple
 
+from feedback_box.application.interfaces.icommand_query import CommandQuery
 from feedback_box.application.inbox.queries.get_all import GetAllInboxesQuery
 
 
 @pytest.fixture(scope='function')
-def get_all_inboxes_query_with_mock_db(mock_db_service):
+def get_all_inboxes_query_with_mock_db(mock_db_service) -> Tuple[Mock, CommandQuery]:
     query = GetAllInboxesQuery(db=mock_db_service)
 
     return mock_db_service, query

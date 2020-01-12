@@ -1,12 +1,14 @@
 import pytest
 from uuid import uuid4
 from mock import Mock
+from typing import Tuple
 
 from feedback_box.application.inbox.queries.get import GetInboxQuery
+from feedback_box.application.interfaces.icommand_query import CommandQuery
 
 
 @pytest.fixture
-def get_inbox_query_with_db(mock_db_service):
+def get_inbox_query_with_db(mock_db_service) -> Tuple[Mock, CommandQuery]:
     query = GetInboxQuery(mock_db_service)
 
     return mock_db_service, query

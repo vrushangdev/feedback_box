@@ -1,14 +1,16 @@
 import pytest
+from mock import Mock
+from typing import Tuple
 
+from feedback_box.application.interfaces.icommand_query import CommandQuery
 from feedback_box.application.inbox.commands.create import CreateInboxCommand
 
 
 @pytest.fixture(scope='function')
-def inbox_create_command_with_mock_db(mock_db_service):
-    db = mock_db_service
-    command = CreateInboxCommand(db=db)
+def inbox_create_command_with_mock_db(mock_db_service) -> Tuple[Mock, CommandQuery]:
+    command = CreateInboxCommand(db=mock_db_service)
 
-    yield db, command
+    return mock_db_service, command
 
 
 class TestCreateInboxCommand:

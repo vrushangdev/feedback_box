@@ -1,0 +1,2 @@
+class NoMatchingInbox(Exception):
+    pass

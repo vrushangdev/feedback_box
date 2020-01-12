@@ -3,6 +3,7 @@ from uuid import uuid4
 from mock import Mock
 from typing import Tuple
 
+from feedback_box.persistance.exceptions import NoMatchingInbox
 from feedback_box.application.inbox.queries.get import GetInboxQuery
 from feedback_box.application.interfaces.icommand_query import CommandQuery
 
@@ -35,9 +36,9 @@ class TestGetInboxQuery:
 
     def test_get_inbox_query_throws_exception_when_no_inbox_was_found(self):
         db = Mock()
-        db.find_inbox.side_effect = Exception
+        db.find_inbox.side_effect = NoMatchingInbox
 
         query = GetInboxQuery(db=db)
 
-        with pytest.raises(Exception):
+        with pytest.raises(NoMatchingInbox):
             query.execute(inbox_id=str(uuid4()))

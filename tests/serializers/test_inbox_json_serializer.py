@@ -1,12 +1,13 @@
 import json
 import bcrypt
-from uuid import uuid4
+from uuid import UUID, uuid4
+from typing import Tuple
 
 from feedback_box.domain.tripcode import Tripcode
 from feedback_box.serializers import inbox_json_serializer as ser
 
 
-def create_stub_inbox():
+def create_stub_inbox() -> Tuple[object, UUID]:
     inbox_id = uuid4()
 
     class StubInbox:
